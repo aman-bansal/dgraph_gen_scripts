@@ -1,0 +1,5 @@
+type Event {
+    eventId: ID!
+    title: String! @search(by: [hash, term])
+    eventTime: Int
+}

@@ -1,0 +1,42 @@
+type User {
+    userId: ID!
+    username: String! @search(by: [hash, term])
+    email: String! @search(by: [hash, regexp])
+    addresses: [Address!]
+    orders: [Order!]
+    reviews: [Review] @hasInverse(field: by)
+}
+
+type Seller {
+    sellerId: ID!
+    name: String! @search(by: [hash, regexp])
+
+}
+
+type Address {
+    aline1: String! @search(by: [hash, regexp])
+    aline2: String! @search(by: [hash, regexp])
+}
+
+type Order {
+    orderId: ID!
+    products: [Product!]
+    totalCost: Int!
+    shippingAdress: Address!
+    billingAddress: Address!
+}
+
+type Product {
+    productID: ID!
+    name: String @search(by: [term])
+    reviews: [Review] @hasInverse(field: about)
+    sellers: [Seller!]
+}
+
+type Review {
+    id: ID!
+    about: Product!
+    by: Customer!
+    comment: String @search(by: [fulltext])
+    rating: Int @search
+}

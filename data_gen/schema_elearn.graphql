@@ -1,0 +1,25 @@
+type User {
+    userId: ID!
+    username: String! @search(by: [hash, term])
+    email: String! @search(by: [hash, regexp])
+    Content: [Content!]
+}
+
+interface Content {
+    cId: ID!
+    name: String! @search(by: [hash, regexp])
+}
+
+type Course implements Content {
+    chapters: [Chapter!]!
+}
+
+type Chapter {
+    name: String! @search(by: [hash, regexp])
+    data: String! @search(by: [hash, regexp])
+}
+
+type Question implements Content {
+    questions: String! @search(by: [hash, regexp])
+    answer: String! @search(by: [hash, regexp])
+}
