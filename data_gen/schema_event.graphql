@@ -1,5 +1,22 @@
 type Event {
     eventId: ID!
     title: String! @search(by: [hash, term])
-    eventTime: Int
+    eventTime: DateTime @search(by : [day])
+}
+
+mutation {
+    addEvent(input: [{
+        title:"this is event 1",
+        eventTime: 1598897493
+    },
+        {
+            title:"this is event 2",
+            eventTime: 1598638293
+        }]) {
+        event{
+            eventId
+            title
+            eventTime
+        }
+    }
 }

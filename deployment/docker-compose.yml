@@ -17,7 +17,7 @@ services:
       - 8080:8080
       - 9080:9080
     restart: on-failure
-    command: dgraph alpha --my=alpha:7080 --lru_mb=2048 --zero=zero:5080 --whitelist 0.0.0.0/0
+    command: dgraph alpha --my=alpha:7080 --lru_mb=4096 --zero=zero:5080 --whitelist 0.0.0.0/0
   ratel:
     image: dgraph/dgraph:latest
     ports:

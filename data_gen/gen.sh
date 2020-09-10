@@ -1,4 +1,6 @@
-curl -X POST localhost:8080/admin/schema --data-binary '@schema_elearn.graphql'
+curl -X POST localhost:8080/admin/schema --data-binary '@schema.graphql'
+
+curl https://get.dgraph.io -sSf | bash
 
 # Write your query or mutation here
 mutation {

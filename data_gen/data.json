@@ -1,0 +1,24 @@
+ [
+    {
+      "dgraph.type": "User",
+      "user_id": 3,
+      "user_name": "ZmoscJ",
+      "register_time": "2020-06-08",
+      "browser": [
+        {
+          "dgraph.type": "Browser",
+          "browser_times": 6,
+          "browser_chapter": {
+            "dgraph.type": "Chapter",
+            "chapter_id": 5,
+            "chapter_title": "在你心里，...？",
+            "belong_course": {
+              "dgraph.type": "Course",
+              "course_id": 5,
+              "course_name": "金融...50讲"
+            }
+          }
+        }
+      ]
+    }
+  ]
