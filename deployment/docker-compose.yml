@@ -1,25 +1,29 @@
-version: "3.2"
+# Auto-generated with: [./compose --data_dir ./data1]
+#
+version: "3.5"
 services:
-  zero:
+  alpha2:
     image: dgraph/dgraph:latest
+    working_dir: /data1/alpha2
+    labels:
+      cluster: test
+    ports:
+      - 8182:8182
+      - 9182:9182
     volumes:
-      - /tmp/data:/dgraph
-    ports:
-      - 5080:5080
-      - 6080:6080
-    restart: on-failure
-    command: dgraph zero --my=zero:5080
-  alpha:
-    image: dgraph/dgraph:latest
-    volumes:
-      - /tmp/data:/dgraph
-    ports:
-      - 8080:8080
-      - 9080:9080
-    restart: on-failure
-    command: dgraph alpha --my=alpha:7080 --lru_mb=4096 --zero=zero:5080 --whitelist 0.0.0.0/0
-  ratel:
-    image: dgraph/dgraph:latest
-    ports:
-      - 8000:8000
-    command: dgraph-ratel
+      - type: bind
+        source: $GOPATH/bin
+        target: /gobin
+        read_only: true
+      - type: bind
+        source: ./data1
+        target: /data1
+        read_only: false
+    command: dgraph alpha -o 102 --lru_mb 1024 --my=alpha2:7182 --zero=zero1:5180 --logtostderr
+      -v=2 --whitelist=10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
+    deploy:
+      resources:
+        limits:
+          memory: 32G
+
+volumes: {}

@@ -1,20 +1,6 @@
-type Chapter {
-    chapter_id: Int! @dgraph(pred:"chapter_id")
-    chapter_title: String! @search(by: [term, fulltext]) @dgraph(pred:"chapter_title")
-    belong_course: Course @dgraph(pred:"belong_course")
-}
-
-type Course {
-    course_id: Int! @dgraph(pred:"course_id")
-    course_name: String! @search(by: [term, fulltext]) @dgraph(pred:"course_name")
-}
-type Browser {
-    browser_times: Int! @dgraph(pred:"browser_times")
-    browser_chapter: [Chapter] @dgraph(pred:"browser_chapter")
-}
-type User {
-    user_id: Int! @dgraph(pred:"user_id")
-    user_name: String @search(by: [hash]) @dgraph(pred:"user_name")
-    register_time: DateTime @dgraph(pred:"register_time")
-    browser: [Browser] @dgraph(pred:"browser")
+type Verification {
+  id: ID!
+  as: Boolean
+  Uid: String
+  subscription: String
 }
